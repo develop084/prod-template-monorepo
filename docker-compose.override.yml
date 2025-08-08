@@ -1,0 +1,11 @@
+services:
+  backend:
+    env_file: .env.local
+    command: pnpm --filter backend dev
+    volumes:
+      - ./apps/backend:/app/apps/backend
+
+  frontend:
+    command: pnpm --filter frontend dev
+    volumes:
+      - ./apps/frontend:/app/apps/frontend
