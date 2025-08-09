@@ -23,10 +23,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
+          cache: pnpm
+
+      - name: Enable corepack
+        run: corepack enable
 
       - name: Install pnpm
-        run: corepack enable && corepack prepare pnpm@${{ env.PNPM_VERSION }} --activate
+        run: corepack prepare pnpm@${{ env.PNPM_VERSION }} --activate
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -99,4 +102,4 @@ jobs:
         if: failure()
         run: |
           echo "CI/CD Pipeline Failed!"
-          # Add your notification logic here (e.g., Slack, Email, etc.)
+          # Add your notification logic here (Slack, Email, etc.)
